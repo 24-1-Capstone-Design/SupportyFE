@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">supporty_fe</string>
+
+    <string-array name="options1">
+        <item>옵션1-1</item>
+        <item>옵션1-2</item>
+        <item>옵션1-3</item>
+    </string-array>
+
+    <string-array name="options2">
+        <item>옵션1-1</item>
+        <item>옵션1-2</item>
+        <item>옵션1-3</item>
+    </string-array>
+
+    <string-array name="options3">
+        <item>옵션1-1</item>
+        <item>옵션1-2</item>
+        <item>옵션1-3</item>
+    </string-array>
+    <!-- options2와 options3도 유사하게 추가 -->
+</resources>
