@@ -1,4 +1,4 @@
-package com.cookandroid.supporty_fe;
+package com.example.supporty;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.EditText;
+
+import com.cookandroid.supporty_fe.R;
 
 
 public class DiaryActivity extends AppCompatActivity {

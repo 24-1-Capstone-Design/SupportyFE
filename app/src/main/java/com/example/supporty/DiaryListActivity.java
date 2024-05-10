@@ -1,4 +1,4 @@
-package com.cookandroid.supporty_fe;
+package com.example.supporty;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.cookandroid.supporty_fe.R;
+
 import java.util.ArrayList;
 
 public class DiaryListActivity extends AppCompatActivity {

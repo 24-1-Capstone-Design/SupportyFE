@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="3dp"
-    tools:context=".DiaryActivity">
+    tools:context="com.example.supporty.DiaryActivity">
 
     <EditText
         android:id="@+id/etTitle"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
-        tools:context=".DiaryActivity">
+        tools:context="com.example.supporty.DiaryActivity">
 
         <Spinner
             android:id="@+id/spinner1"
