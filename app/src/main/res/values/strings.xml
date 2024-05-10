@@ -1,8 +1,31 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">Supporty</string>
     <string name="idText">아이디</string>
     <string name="title">Supporty</string>
     <string name="passwdText">비밀번호</string>
     <string name="signupText">회원가입</string>
     <string name="autoLoginText">자동로그인</string>
+=======
+    <string name="app_name">supporty_fe</string>
+    <string name="select_item">Select Item</string>
+    <string-array name="items1">
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+    </string-array>
+    <string-array name="items2">
+        <item>Subitem 1</item>
+        <item>Subitem 2</item>
+        <item>Subitem 3</item>
+    </string-array>
+    <string-array name="items3">
+        <item>Option 1</item>
+        <item>Option 2</item>
+        <item>Option 3</item>
+    </string-array>
+    <string-array name="items_empty">
+        <item>Select Item</item>
+    </string-array>
+>>>>>>> 0474e8c07504bd27aad9a82001018e71228b73b4
 </resources>
