@@ -1,22 +1,22 @@
 <resources>
     <string name="app_name">supporty_fe</string>
-
-    <string-array name="options1">
-        <item>옵션1-1</item>
-        <item>옵션1-2</item>
-        <item>옵션1-3</item>
+    <string name="select_item">Select Item</string>
+    <string-array name="items1">
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
     </string-array>
-
-    <string-array name="options2">
-        <item>옵션1-1</item>
-        <item>옵션1-2</item>
-        <item>옵션1-3</item>
+    <string-array name="items2">
+        <item>Subitem 1</item>
+        <item>Subitem 2</item>
+        <item>Subitem 3</item>
     </string-array>
-
-    <string-array name="options3">
-        <item>옵션1-1</item>
-        <item>옵션1-2</item>
-        <item>옵션1-3</item>
+    <string-array name="items3">
+        <item>Option 1</item>
+        <item>Option 2</item>
+        <item>Option 3</item>
     </string-array>
-    <!-- options2와 options3도 유사하게 추가 -->
+    <string-array name="items_empty">
+        <item>Select Item</item>
+    </string-array>
 </resources>
