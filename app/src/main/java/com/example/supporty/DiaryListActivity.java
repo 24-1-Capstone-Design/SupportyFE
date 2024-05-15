@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.cookandroid.supporty_fe.R;
+import com.example.supporty.R;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ public class DiaryListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_list);
 
-        listView = findViewById(R.id.diary_list);
+        listView = findViewById(R.id.post_list);
         diaryList = new ArrayList<>();
 
         // 여기서 postList에 사용자의 댓글을 추가

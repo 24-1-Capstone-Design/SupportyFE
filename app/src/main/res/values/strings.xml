@@ -1,13 +1,13 @@
 <resources>
-<<<<<<< HEAD
+
     <string name="app_name">Supporty</string>
     <string name="idText">아이디</string>
     <string name="title">Supporty</string>
     <string name="passwdText">비밀번호</string>
     <string name="signupText">회원가입</string>
     <string name="autoLoginText">자동로그인</string>
-=======
-    <string name="app_name">supporty_fe</string>
+
+
     <string name="select_item">Select Item</string>
     <string-array name="items1">
         <item>Item 1</item>
@@ -27,5 +27,5 @@
     <string-array name="items_empty">
         <item>Select Item</item>
     </string-array>
->>>>>>> 0474e8c07504bd27aad9a82001018e71228b73b4
+
 </resources>

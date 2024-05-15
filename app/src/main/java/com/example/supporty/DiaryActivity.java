@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.EditText;
 
-import com.cookandroid.supporty_fe.R;
+import com.example.supporty.R;
 
 
 public class DiaryActivity extends AppCompatActivity {

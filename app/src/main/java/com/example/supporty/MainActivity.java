@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<SignupRes> call, @NonNull Response<SignupRes> response) {
                 SignupRes result = response.body();
                 assert result != null;
-                if(result.getStatus()==200) {
+                int statusCode = response.code();
+                if(statusCode==200) {
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);
                 }
