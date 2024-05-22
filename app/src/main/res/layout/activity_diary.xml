@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="3dp"
+    tools:context="com.example.supporty.DiaryActivity">
+
+    <EditText
+        android:id="@+id/etTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="제목을 입력하세요."
+        android:padding="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context="com.example.supporty.DiaryActivity">
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/select_item" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:enabled="false"
+            android:prompt="@string/select_item" />
+
+        <Spinner
+            android:id="@+id/spinner3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:enabled="false"
+            android:prompt="@string/select_item" />
+
+    </LinearLayout>
+
+    <!-- 작성자 정보 입력란 -->
+    <EditText
+        android:id="@+id/etAuthorInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="작성자 정보(ID)를 입력하세요."
+        android:padding="10dp"/>
+
+
+    <!-- 내용 입력란 (선택) -->
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="16dp"
+        android:hint="내용을 입력하세요."
+        android:lines="10"
+        android:padding="10dp"/>
+
+    <!-- 게시글 등록 버튼 -->
+    <Button
+        android:id="@+id/btnCreatePost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:text="게시글 등록" />
+
+</LinearLayout>

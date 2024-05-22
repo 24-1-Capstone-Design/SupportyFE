@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         apiServiceInterface.loginRequest(data).enqueue(new Callback<LoginRes>() {
             @Override
+
             public void onResponse(@NonNull Call<LoginRes> call, @NonNull Response<LoginRes> response) {
                 if (response.isSuccessful()) {
                     //답장 온 body 를 LoginRes 객체에 넣음
@@ -66,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // 서버의 응답이 실패한 경우
                     Toast.makeText(getApplicationContext(), "서버 응답 실패", Toast.LENGTH_LONG).show();
+
+            public void onResponse(@NonNull Call<SignupRes> call, @NonNull Response<SignupRes> response) {
+                SignupRes result = response.body();
+                assert result != null;
+                int statusCode = response.code();
+                if(statusCode==200) {
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(intent);
                 }
             }
 
