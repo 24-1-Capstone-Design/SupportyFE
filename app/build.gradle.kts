@@ -43,4 +43,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.google.android.material:material:1.3.0")
+    implementation ("org.parceler:parceler-api:1.1.13")
+    annotationProcessor ("org.parceler:parceler:1.1.13")
+
 }

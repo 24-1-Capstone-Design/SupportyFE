@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="50dp"
+    android:layout_margin="20dp"
+    android:background="#E0E0E0"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/achieved_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/goal_title"
+                android:layout_width="154dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="0dp"
+                android:text="제목"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/goal_content"
+                android:layout_width="157dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="0dp"
+                android:text="내용"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/edit_button"
+        android:layout_width="76dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/white"
+        android:textSize="15sp"
+        android:text="수정"
+        android:textColor="@color/black" />
+</LinearLayout>

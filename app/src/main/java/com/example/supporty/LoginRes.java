@@ -36,9 +36,7 @@ class User { // db로부터 받은 User 테이블 속성들
     @SerializedName("join_date")
     private String joinDate;
 
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
 
     public String getNickname() {
         return nickname;
