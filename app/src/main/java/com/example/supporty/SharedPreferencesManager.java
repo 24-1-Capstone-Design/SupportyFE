@@ -15,6 +15,7 @@ public class SharedPreferencesManager {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
+
     public static void saveUserInfo(Context context, String userId, String nickname, String joinDate) {
         SharedPreferences.Editor editor = getSharedPreferences((Context) context).edit();
         editor.putString(KEY_USER_ID, userId);
