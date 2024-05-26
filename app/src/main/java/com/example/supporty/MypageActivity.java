@@ -63,20 +63,20 @@ public class MypageActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_mypage);
 
+        //하단 네비게이션바 코드
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                if(menuItem.getItemId() == R.id.navigation_home) {
-                    Intent homeIntent = new Intent(MypageActivity.this, HomeActivity.class);
-                    startActivity(homeIntent);
-                } else if (menuItem.getItemId() == R.id.navigation_mypage) {
-                    Intent mypageIntent = new Intent(MypageActivity.this, MypageActivity.class);
-                    startActivity(mypageIntent);
-                }
-                return false;
+        bottomNavigationView.setOnItemSelectedListener(menuItem -> {
+            if(menuItem.getItemId() == R.id.navigation_home) {
+                Intent homeIntent = new Intent(MypageActivity.this, HomeActivity.class);
+                startActivity(homeIntent);
+            } else if (menuItem.getItemId() == R.id.navigation_mypage) {
+                Intent mypageIntent = new Intent(MypageActivity.this, MypageActivity.class);
+                startActivity(mypageIntent);
+            } else if(menuItem.getItemId() == R.id.navigation_record) {
+                Intent recordIntent = new Intent(MypageActivity.this, RecordActivity.class);
+                startActivity(recordIntent);
             }
+            return false;
         });
 
 //레트로핏 통신 위해서 apiServiceInterface 변수에 레트로핏 객체 할당
