@@ -19,6 +19,8 @@ import retrofit2.Retrofit;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import java.util.Date;
+import java.util.Random;
 
 public class AddGoalFragment extends Fragment {
 
@@ -49,22 +51,29 @@ public class AddGoalFragment extends Fragment {
                 String goalTitle = goalTitleInput.getText().toString();
                 String goalContent = goalContentInput.getText().toString();
 
-                GoalData goalData = new GoalData(userId, goalTitle, goalContent, false);
+                int goalId = Utils.generateRandomGoalId();
+                Date goalDate = Utils.generateCurrentDate();
+
+                GoalData goalData = new GoalData(userId, goalId, goalTitle, goalContent, false, goalDate);
                 GoalApiService goalApiService = RetrofitClient.getClient().create(GoalApiService.class);
                 Call<GoalRes> call = goalApiService.goalPostRequest(userId, goalData);
                 call.enqueue(new Callback<GoalRes>() {
                     @Override
                     public void onResponse(Call<GoalRes> call, Response<GoalRes> response) {
+                        int statusCode = response.code(); // 응답 상태 코드 가져오기
+
                         if (response.isSuccessful()) {
                             // 데이터베이스에 목표 정보 저장 성공
                             Toast.makeText(getContext(), "목표 추가 성공!", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "목표 추가 성공");
                             ((GoalActivity) getActivity()).showGoalListFragment();
                         } else {
-                            // 서버 응답은 있으나 성공하지 못한 경우
+                            // 서버 응답은 있으나 성공하지 못한 경우 (상태 코드가 200이 아닌 경우)
+                            Log.d(TAG, "상태 코드: " + response.code());
+                            Toast.makeText(getContext(), "상태 코드: " + statusCode, Toast.LENGTH_LONG).show();
+                        }
                             Toast.makeText(getContext(), "목표 추가 실패", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "목표 추가 실패");
-                        }
                     }
 
                     @Override

@@ -2,7 +2,7 @@ package com.example.supporty.goal;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GoalRes { // 목표 추가 시 서버로부터 받을 데이터
+public class GoalRes { // 서버로부터 받을 데이터
 
     @SerializedName("status")
     private int status;

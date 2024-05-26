@@ -34,11 +34,13 @@ public class MainActivity extends AppCompatActivity {
     private Retrofit retrofit = RetrofitClient.getClient();
 
     private void login(SignupData data) {
-
+        Log.d("Login", "로그인 요청 시작");
         apiServiceInterface.loginRequest(data).enqueue(new Callback<LoginRes>() {
             @Override
             public void onResponse(@NonNull Call<LoginRes> call, @NonNull Response<LoginRes> response) {
+                Log.d("Login", "서버 응답 받음");
                 if (response.isSuccessful()) {
+                    Log.d("Login", "응답 성공");
                     //답장 온 body 를 LoginRes 객체에 넣음
                     LoginRes loginResponse = response.body();
                     if(loginResponse != null) {
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     else {
+                        Log.d("Login", "응답 본문이 없음");
                         Toast.makeText(getApplicationContext(),"정보들이 없음", Toast.LENGTH_LONG).show();
                     }
                     int statusCode = response.code(); // 응답 상태 코드 가져오기
@@ -60,10 +63,12 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, MypageActivity.class);
                         startActivity(intent);
                     } else {
+                        Log.d("Login", "상태 코드: " + response.code());
                         // 상태 코드가 200이 아닌 경우
                         Toast.makeText(getApplicationContext(), "상태 코드: " + statusCode, Toast.LENGTH_LONG).show();
                     }
                 } else {
+                    Log.d("Login", "응답 실패");
                     // 서버의 응답이 실패한 경우
                     Toast.makeText(getApplicationContext(), "서버 응답 실패", Toast.LENGTH_LONG).show();
                 }
@@ -105,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("MainActivity", "로그인 버튼 클릭됨");
                 String id = loginId.getText().toString();
                 String passwd = loginPasswd.getText().toString();
                 //로그인 버튼 누르면 서버로 요청보내서 DB에 있는지 확인

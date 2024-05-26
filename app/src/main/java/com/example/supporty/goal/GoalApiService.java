@@ -9,17 +9,18 @@ import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface GoalApiService {
-    @POST("/goal/{userId}")
-    Call<GoalRes> goalPostRequest(@Path("userId") String userId, @Body GoalData data);
+    @POST("/goal/create")
+    Call<GoalRes> goalPostRequest(@Query("id") String id, @Body GoalData data);
 
-    @GET("/goal/{userId}")
-    Call<List<GoalRes>> goalGetRequest(@Path("userId") String userId);
+    @GET("/goal")
+    Call<List<GoalRes>> goalGetRequest(@Query("id") String id);
 
-    @DELETE("/goal/{userId}/{goalId}")
-    Call<GoalRes> goalDeleteRequest(@Path("userId") String userId, @Path("goalId") int goalId);
+    @PATCH("/goal/update")
+    Call<GoalRes> goalPatchRequest(@Query("id") String id, @Query("goalId") int goalId, @Body GoalData data);
 
-    @PATCH("/goal/{userId}/{goalId}")
-    Call<GoalRes> goalPatchRequest(@Path("userId") String userId, @Path("goalId") int goalId, @Body GoalData data);
+    @DELETE("/goal/delete")
+    Call<Void> goalDeleteRequest(@Query("id") String id, @Query("goalId") int goalId);
 }
