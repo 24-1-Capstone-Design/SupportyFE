@@ -36,7 +36,6 @@ public class SharedPreferencesManager {
         return getSharedPreferences(context).getString(KEY_JOIN_DATE, "");
     }
 
-    // 세션 ID 저장 메서드 추가
 
 }
 

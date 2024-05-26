@@ -28,20 +28,20 @@ public class HomeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
+        //하단 네비게이션바 코드
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                if(menuItem.getItemId() == R.id.navigation_home) {
-                    Intent homeIntent = new Intent(HomeActivity.this, HomeActivity.class);
-                    startActivity(homeIntent);
-                } else if (menuItem.getItemId() == R.id.navigation_mypage) {
-                    Intent mypageIntent = new Intent(HomeActivity.this, MypageActivity.class);
-                    startActivity(mypageIntent);
-                }
-                return false;
+        bottomNavigationView.setOnItemSelectedListener(menuItem -> {
+            if(menuItem.getItemId() == R.id.navigation_home) {
+                Intent homeIntent = new Intent(HomeActivity.this, HomeActivity.class);
+                startActivity(homeIntent);
+            } else if (menuItem.getItemId() == R.id.navigation_mypage) {
+                Intent mypageIntent = new Intent(HomeActivity.this, MypageActivity.class);
+                startActivity(mypageIntent);
+            } else if(menuItem.getItemId() == R.id.navigation_record) {
+                Intent recordIntent = new Intent(HomeActivity.this, RecordActivity.class);
+                startActivity(recordIntent);
             }
+            return false;
         });
 
 
