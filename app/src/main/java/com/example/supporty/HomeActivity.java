@@ -45,18 +45,6 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        // GoalActivity 실행 테스트를 위한 임시 코드 (추후 삭제)
-        // Goal Activity로 이동하는 버튼 클릭 시
-        Button goalButton = findViewById(R.id.goal_button);
-        goalButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Goal Activity로 이동
-                Intent intent = new Intent(HomeActivity.this, GoalActivity.class);
-                startActivity(intent);
-            }
-        });
-
     }
 }
 

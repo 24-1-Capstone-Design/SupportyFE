@@ -10,6 +10,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.supporty.goal.*;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Calendar;
@@ -32,14 +33,11 @@ public class RecordActivity extends AppCompatActivity {
             Intent intent = new Intent(RecordActivity.this, DiaryActivity.class);
             startActivity(intent);
         });
-//        goGoal.setOnClickListener(v -> {
-//            Intent intent = new Intent(RecordActivity.this, DiaryActivity.class);
-//            startActivity(intent);
-//        });
-//        goDiary.setOnClickListener(v -> {
-//            Intent intent = new Intent(RecordActivity.this, DiaryActivity.class);
-//            startActivity(intent);
-//        });
+        goGoal.setOnClickListener(v -> {
+            Intent intent = new Intent(RecordActivity.this, GoalActivity.class);
+            startActivity(intent);
+        });
+
         //캘린더 뷰
         calendarView = findViewById(R.id.calendarView);
         //현재 날짜 가져옴
