@@ -61,7 +61,7 @@
             android:id="@+id/goDrug"
             android:layout_width="120sp"
             android:layout_height="wrap_content"
-            android:text="복용약"
+            android:text="진료"
             android:textColor="@color/black"
             android:backgroundTint="@color/mainColor"
             android:padding="12sp"

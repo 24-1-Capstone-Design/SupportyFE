@@ -21,7 +21,7 @@ public class GoalData {    // 서버에 보낼 데이터
     private String goalContent;
 
     @SerializedName("isAchieved")
-    private Boolean isAcieved;
+    private Boolean isAchieved;
 
     @SerializedName("goalDate")
     private Date goalDate;
@@ -32,7 +32,17 @@ public class GoalData {    // 서버에 보낼 데이터
         this.goalId = goalId;
         this.goalTitle = goalTitle;
         this.goalContent = goalContent;
-        this.isAcieved = false; // 목표 생성될 때 디폴트 false(미달성)
+        this.isAchieved = isAchieved;
         this.goalDate = goalDate;
+    }
+
+    // isAchieved 값을 설정하는 메서드
+    public void setAchieved(boolean isAchieved) {
+        this.isAchieved = isAchieved;
+    }
+
+    // isAchieved 값을 반환하는 메서드
+    public boolean isAchieved() {
+        return isAchieved;
     }
 }
