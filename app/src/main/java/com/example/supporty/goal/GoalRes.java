@@ -2,6 +2,8 @@ package com.example.supporty.goal;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class GoalRes { // 서버로부터 받을 데이터
 
     @SerializedName("status")
@@ -23,7 +25,7 @@ public class GoalRes { // 서버로부터 받을 데이터
     private boolean isAchieved;
 
     @SerializedName("goalDate")
-    private String goalDate;
+    private Date goalDate;
 
     public int getStatus() {
         return status;
@@ -49,7 +51,7 @@ public class GoalRes { // 서버로부터 받을 데이터
         return isAchieved;
     }
 
-    public String getGoalDate() {
+    public Date getGoalDate() {
         return goalDate;
     }
 

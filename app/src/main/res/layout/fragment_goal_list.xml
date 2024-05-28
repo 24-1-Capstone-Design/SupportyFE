@@ -4,18 +4,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".goal.GoalListFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/prev_date_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/prev_date_description"
+            android:src="@drawable/prev_date"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:padding="0dp"/>
+
+        <TextView
+            android:id="@+id/date_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="10dp"
+            android:text="YYYY-MM-DD"
+            android:textSize="30sp" />
+
+        <ImageButton
+            android:id="@+id/next_date_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/next_date"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/next_date_description"
+            android:scaleType="centerCrop"
+            android:padding="0dp"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/add_goal_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="목표 추가" />
+        android:text="목표 추가"
+        android:backgroundTint="@color/mainColor"
+        android:textColor="@color/black"
+        android:layout_marginTop="16dp"/>
 
     <LinearLayout
         android:id="@+id/goal_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"/>
 
 </LinearLayout>

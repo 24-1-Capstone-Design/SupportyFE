@@ -11,6 +11,9 @@
     <string name = "analysis">분석</string>
     <string name="mypage">My</string>
 
+    <string name="prev_date_description">이전 날짜</string>
+    <string name="next_date_description">다음 날짜</string>
+
     <string name="select_item">Select Item</string>
     <string-array name="items1">
         <item>Item 1</item>
