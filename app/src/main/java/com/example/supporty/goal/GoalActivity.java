@@ -47,9 +47,6 @@ public class GoalActivity extends AppCompatActivity {
 
 
 
-
-
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -85,6 +82,10 @@ public class GoalActivity extends AppCompatActivity {
                 } else if (menuItem.getItemId() == R.id.navigation_mypage) {
                     Intent mypageIntent = new Intent(GoalActivity.this, MypageActivity.class);
                     startActivity(mypageIntent);
+                    return true;
+                } else if (menuItem.getItemId() == R.id.navigation_record) {
+                    Intent recordIntent = new Intent(GoalActivity.this, RecordActivity.class);
+                    startActivity(recordIntent);
                     return true;
                 }
                 return false;
