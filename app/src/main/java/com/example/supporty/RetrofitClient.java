@@ -8,10 +8,10 @@ import android.util.Log;
 
 public class RetrofitClient {
     // 시영 GCP 외부 IP 주소
-    // private static final String BASE_URL = "http://34.47.84.187:80";
+    private static final String BASE_URL = "http://34.47.84.187:80";
 
     // 유진 GCP 외부 IP 주소
-    private static final String BASE_URL = "http://34.64.220.129:80";
+   //private static final String BASE_URL = "http://34.64.220.129:80";
 
     private static Retrofit retrofit = null;
 
