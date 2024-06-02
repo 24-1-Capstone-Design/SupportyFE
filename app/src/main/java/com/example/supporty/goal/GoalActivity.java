@@ -68,8 +68,6 @@ public class GoalActivity extends AppCompatActivity {
 
 
 
-
-
         // 하단바
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
