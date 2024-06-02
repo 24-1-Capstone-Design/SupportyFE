@@ -1,5 +1,6 @@
 package com.example.supporty;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -7,8 +8,11 @@ import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,15 +39,18 @@ class BigFeel{
     public String getBig_feeling() {
         return big_feeling;
     }
+
 }
 
 class MidFeel {
     @SerializedName("mid_feeling")
     private String mid_feeling;
 
+
     public String getMid_feeling() {
         return mid_feeling;
     }
+
 }
 
 class SmallFeel {
@@ -53,12 +60,13 @@ class SmallFeel {
     public String getSmall_feeling() {
         return small_feeling;
     }
+
 }
 
 
 public class DiaryActivity extends AppCompatActivity {
 
-    private EditText etDescription;
+    private EditText diary_content;
 
     private TextView diaryDate;
     //감정 스피너
@@ -68,6 +76,8 @@ public class DiaryActivity extends AppCompatActivity {
     private ApiService apiServiceInterface;
 
     private Retrofit retrofit = RetrofitClient.getClient();
+
+    private Button postButton;
 
     //큰 감정 가져오기
     private void fetchBigFeelings() {
@@ -183,12 +193,58 @@ public class DiaryActivity extends AppCompatActivity {
         return dateFormat.format(todayDate);
     }
 
+    //일기 포스팅
+    private void submitDiary() {
+        String id = SharedPreferencesManager.getUserId(this); // Replace with actual user ID
+        String date = getCurrentDateString();
+        String content = diary_content.getText().toString();
+        String bigFeeling = String.valueOf(spinner1.getSelectedItem());
+        String midFeeling = String.valueOf(spinner2.getSelectedItem());
+        String smallFeeling = String.valueOf(spinner3.getSelectedItem());
+
+        DiaryData diary = new DiaryData(id, date, content, bigFeeling, midFeeling, smallFeeling);
+
+        apiServiceInterface.postDiary(diary).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                if (response.isSuccessful() && response.code() == 200) {
+                    Toast.makeText(DiaryActivity.this, "오늘의 일기 등록!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(DiaryActivity.this, DiaryListActivity.class);
+                    startActivity(intent);
+                } else if(response.code() == 409)  {
+                    Toast.makeText(DiaryActivity.this, "오늘의 일기를 이미 작성하셨습니다", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(DiaryActivity.this, "일기 등록 실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                Toast.makeText(DiaryActivity.this, "서버 통신 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
-        etDescription = findViewById(R.id.etDescription);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+
+        // 버튼 클릭 이벤트 처리
+        ImageButton iconButton = findViewById(R.id.icon_button);
+        iconButton.setOnClickListener(v -> {
+            // 아이콘 버튼 클릭 시 이벤트 처리
+            Intent intent = new Intent(DiaryActivity.this, DiaryListActivity.class);
+            startActivity(intent);
+        });
+
+        //diary 내용
+        diary_content = findViewById(R.id.diary_content);
 
         //현재 날짜
         diaryDate = findViewById(R.id.diaryDate);
@@ -197,6 +253,8 @@ public class DiaryActivity extends AppCompatActivity {
         spinner1 = findViewById(R.id.spinner1);
         spinner2 = findViewById(R.id.spinner2);
         spinner3 = findViewById(R.id.spinner3);
+
+        postButton = findViewById(R.id.btnCreatePost);
 
         apiServiceInterface = retrofit.create(ApiService.class);
 
@@ -225,7 +283,6 @@ public class DiaryActivity extends AppCompatActivity {
                 //MidFeeling 선택되면 세 번째 스피너 fetch
                 String selectedMidFeeling = adapter2.getItem(position);
                 if (selectedMidFeeling != null) {
-                    Toast.makeText(DiaryActivity.this, selectedMidFeeling, Toast.LENGTH_SHORT).show();
                     fetchSmallFeelings(selectedMidFeeling);
                 }
             }
@@ -234,6 +291,9 @@ public class DiaryActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        postButton.setOnClickListener(v -> submitDiary());
+
 
     }
 }

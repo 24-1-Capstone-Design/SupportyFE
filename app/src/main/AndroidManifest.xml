@@ -49,7 +49,10 @@
             android:exported="true">
 
         </activity>
+        <activity android:name=".DiaryListActivity"
+            android:exported="true">
 
+        </activity>
     </application>
 
 </manifest>
