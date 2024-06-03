@@ -8,12 +8,28 @@
     android:padding="3dp"
     tools:context="com.example.supporty.DiaryActivity">
 
-    <EditText
-        android:id="@+id/etTitle"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="제목을 입력하세요."
-        android:padding="10dp"/>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:id="@+id/icon_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_list"
+            android:contentDescription="목록"
+            android:layout_gravity="start"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,18 +62,21 @@
 
     </LinearLayout>
 
-    <!-- 작성자 정보 입력란 -->
-    <EditText
-        android:id="@+id/etAuthorInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="작성자 정보(ID)를 입력하세요."
-        android:padding="10dp"/>
+<TextView
+    android:id="@+id/diaryDate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="10dp"
+    android:text = "YYYY-MM-DD"
+    android:textSize = "20dp"
+>
 
+</TextView>
 
     <!-- 내용 입력란 (선택) -->
     <EditText
-        android:id="@+id/etDescription"
+        android:id="@+id/diary_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"

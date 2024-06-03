@@ -1,0 +1,42 @@
+<!-- res/layout/list_item_diary.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- 기본 내용 -->
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:padding="8dp"/>
+
+    <!-- 상세 정보 (초기에는 숨김) -->
+    <LinearLayout
+        android:id="@+id/layoutDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/textFeelings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="감정"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/textContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="상세 내용"
+            android:textSize="16sp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,5 +1,7 @@
 package com.example.supporty;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -22,7 +24,20 @@ public interface ApiService {
     @DELETE("/user/delete") // 회원탈퇴 라우트
     Call<Void> deleteRequest(@Query("id") String id);
 
+    @GET("diary/feelings/big") //큰 감정 가져오기
+    Call<List<BigFeel>> getBigFeelings();
 
+    @GET("diary/feelings/mid") //중간 감정 가져오기
+    Call<List<MidFeel>> getMidFeelings(@Query("big_feeling") String bigFeeling);
+
+    @GET("diary/feelings/small") //작은 감정 가져오기
+    Call<List<SmallFeel>> getSmallFeelings(@Query("mid_feeling") String midFeeling);
+
+    @POST("/diary/posting") //일기 등록
+    Call<Void> postDiary(@Body DiaryData diary);
+
+    @GET("/diary/postingList")
+    Call<List<DiaryData>> getDiaries(@Query("id") String id);
 
 }
 
