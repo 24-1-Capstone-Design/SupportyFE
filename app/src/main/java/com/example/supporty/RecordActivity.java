@@ -61,21 +61,18 @@ public class RecordActivity extends AppCompatActivity {
         
         //하단 네비게이션바 코드
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                if(menuItem.getItemId() == R.id.navigation_home) {
-                    Intent homeIntent = new Intent(RecordActivity.this, HomeActivity.class);
-                    startActivity(homeIntent);
-                } else if (menuItem.getItemId() == R.id.navigation_mypage) {
-                    Intent mypageIntent = new Intent(RecordActivity.this, MypageActivity.class);
-                    startActivity(mypageIntent);
-                } else if(menuItem.getItemId() == R.id.navigation_record) {
-                    Intent recordIntent = new Intent(RecordActivity.this, RecordActivity.class);
-                    startActivity(recordIntent);
-                }
-                return false;
+        bottomNavigationView.setOnItemSelectedListener(menuItem -> {
+            if(menuItem.getItemId() == R.id.navigation_home) {
+                Intent homeIntent = new Intent(RecordActivity.this, HomeActivity.class);
+                startActivity(homeIntent);
+            } else if (menuItem.getItemId() == R.id.navigation_mypage) {
+                Intent mypageIntent = new Intent(RecordActivity.this, MypageActivity.class);
+                startActivity(mypageIntent);
+            } else if(menuItem.getItemId() == R.id.navigation_record) {
+                Intent recordIntent = new Intent(RecordActivity.this, RecordActivity.class);
+                startActivity(recordIntent);
             }
+            return false;
         });
 
     }

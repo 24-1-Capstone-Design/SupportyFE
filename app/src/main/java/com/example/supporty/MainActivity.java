@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Log.d("Login", "응답 실패");
                     // 서버의 응답이 실패한 경우
-                    Toast.makeText(getApplicationContext(), "서버 응답 실패", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "서버 응답 실패0", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         if(SharedPreferencesManager.isLoggedIn(this)) {
             String savedUserId = SharedPreferencesManager.getUserId(this);
             String savedPasswd = SharedPreferencesManager.getPasswd(this);
-            if (savedUserId != null && !savedUserId.isEmpty()) {
+            if (savedUserId != null && !savedUserId.isEmpty() && savedPasswd != null && !savedPasswd.isEmpty()) {
                 login(new SignupData(savedUserId, savedPasswd));
             }
         }

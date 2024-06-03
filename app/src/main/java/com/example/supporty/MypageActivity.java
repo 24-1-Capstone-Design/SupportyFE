@@ -1,6 +1,7 @@
 package com.example.supporty;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -102,11 +104,17 @@ public class MypageActivity extends AppCompatActivity {
         nicknameTextView.setText(nickname);
 
         //회원탈퇴 버튼 누르면 delId 함수 호출
-        delIdButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                delId(userId);
-            }
+        delIdButton.setOnClickListener(v -> {
+            //회원탈퇴 버튼 누를 시 확인하는 창 띄움
+            AlertDialog.Builder builder = new AlertDialog.Builder(MypageActivity.this);
+            builder.setTitle("회원탈퇴")
+                            .setMessage("정말로 회원을 탈퇴하시겠습니까?")
+                                    .setPositiveButton("예", (dialog, which) -> {
+                                        SharedPreferencesManager.Logout(MypageActivity.this);
+                                        delId(userId);
+                                    })
+                    .setNegativeButton("아니오", (dialog, which) -> dialog.dismiss()).show();
+
         });
 
         //로그아웃 버튼 누르면 SharedPreferencesManager 에서 정보들 삭제
