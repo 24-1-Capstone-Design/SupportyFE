@@ -58,7 +58,7 @@
         </Button>
 
         <Button
-            android:id="@+id/goDrug"
+            android:id="@+id/goTreatment"
             android:layout_width="120sp"
             android:layout_height="wrap_content"
             android:text="진료"

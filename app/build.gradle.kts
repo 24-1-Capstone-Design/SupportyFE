@@ -45,5 +45,6 @@ dependencies {
     implementation ("com.google.android.material:material:1.3.0")
     implementation ("org.parceler:parceler-api:1.1.13")
     annotationProcessor ("org.parceler:parceler:1.1.13")
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
 
 }
