@@ -36,8 +36,14 @@ public interface ApiService {
     @POST("/diary/posting") //일기 등록
     Call<Void> postDiary(@Body DiaryData diary);
 
+    @POST("/diary/editPosting")
+    Call<Void> editDiary(@Body DiaryData diary);
+
     @GET("/diary/postingList")
     Call<List<DiaryData>> getDiaries(@Query("id") String id);
+
+    @DELETE("/diary/delete")
+    Call<Void> deleteDiary(@Query("id") String id, @Query("diary_date") String diaryDate);
 
 }
 

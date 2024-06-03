@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.supporty.R;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.DataInput;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -79,6 +80,7 @@ public class DiaryActivity extends AppCompatActivity {
 
     private Button postButton;
 
+
     //큰 감정 가져오기
     private void fetchBigFeelings() {
         apiServiceInterface.getBigFeelings().enqueue(new Callback<List<BigFeel>>() {
@@ -95,6 +97,8 @@ public class DiaryActivity extends AppCompatActivity {
                         adapter1 = new ArrayAdapter<>(DiaryActivity.this, android.R.layout.simple_spinner_item, bigFeelings);
                         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner1.setAdapter(adapter1);
+
+
                     }
                 }
 
@@ -128,6 +132,8 @@ public class DiaryActivity extends AppCompatActivity {
                         adapter2 = new ArrayAdapter<>(DiaryActivity.this, android.R.layout.simple_spinner_item, midFeelings);
                         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner2.setAdapter(adapter2);
+
+
                     } else { //midFeeling 감정 없다면
                         //어댑터들 초기화
                         adapter2 = new ArrayAdapter<>(DiaryActivity.this, android.R.layout.simple_spinner_item, new ArrayList<>());
@@ -168,6 +174,7 @@ public class DiaryActivity extends AppCompatActivity {
                         adapter3 = new ArrayAdapter<>(DiaryActivity.this, android.R.layout.simple_spinner_item, smallFeelings);
                         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner3.setAdapter(adapter3);
+
                     } else {
                         adapter3 = new ArrayAdapter<>(DiaryActivity.this, android.R.layout.simple_spinner_item, new ArrayList<>());
                         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -225,6 +232,39 @@ public class DiaryActivity extends AppCompatActivity {
         });
     }
 
+    //일기 수정 시 부르는 함수
+    private void editDiary(String diaryDate) {
+        String id = SharedPreferencesManager.getUserId(this);
+        String date = diaryDate;
+        String content = diary_content.getText().toString();
+        String bigFeeling = String.valueOf(spinner1.getSelectedItem());
+        String midFeeling = String.valueOf(spinner2.getSelectedItem());
+        String smallFeeling = String.valueOf(spinner3.getSelectedItem());
+
+        DiaryData diary = new DiaryData(id, date, content, bigFeeling, midFeeling, smallFeeling);
+
+        apiServiceInterface.editDiary(diary).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                if (response.isSuccessful() && response.code() == 200) {
+                    Toast.makeText(DiaryActivity.this, "수정 완료!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(DiaryActivity.this, DiaryListActivity.class);
+                    startActivity(intent);
+                } else if(response.code() == 404)  {
+                    Toast.makeText(DiaryActivity.this, "수정할 일기가 없습니다", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(DiaryActivity.this, "수정 실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                Toast.makeText(DiaryActivity.this, "서버 통신 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -235,10 +275,17 @@ public class DiaryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
 
-        // 버튼 클릭 이벤트 처리
-        ImageButton iconButton = findViewById(R.id.icon_button);
-        iconButton.setOnClickListener(v -> {
-            // 아이콘 버튼 클릭 시 이벤트 처리
+        //일반 일기 작성에서 뒤돌아가기 버튼 누르면 "기록" 액티비티로 넘어감
+        ImageButton iconBack = findViewById(R.id.record_back);
+        iconBack.setOnClickListener(v -> {
+            Intent intent = new Intent(DiaryActivity.this, RecordActivity.class);
+            startActivity(intent);
+        });
+
+        // 목록 버튼 누르면 그동안 작성 일기 목록 나타남
+        ImageButton iconList = findViewById(R.id.list_icon);
+        iconList.setOnClickListener(v -> {
+            //DiaryListActivitiy 로 넘어감
             Intent intent = new Intent(DiaryActivity.this, DiaryListActivity.class);
             startActivity(intent);
         });
@@ -293,6 +340,56 @@ public class DiaryActivity extends AppCompatActivity {
         });
 
         postButton.setOnClickListener(v -> submitDiary());
+
+        // 수정 버튼 눌렀을 때 넘어오는 intent 로 데이터 가져오기
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("diaryData")) {
+            DiaryData diaryData = (DiaryData) intent.getSerializableExtra("diaryData");
+
+            //게시글 등록을 수정 버튼으로 바꿈
+            postButton.setText("수정 완료");
+            //editDiary 함수를 불러서 수정하게!
+            postButton.setOnClickListener(v -> editDiary(diaryData.getDiaryDate()));
+
+            if (diaryData != null) {
+                diaryDate.setText(diaryData.getDiaryDate());
+                diary_content.setText(diaryData.getDiaryContent());
+                // 첫 번째 감정 스피너 설정
+                if (diaryData.getBigFeeling() != null) {
+                    fetchBigFeelings();
+                    spinner1.postDelayed(() -> {
+                        int position = adapter1.getPosition(diaryData.getBigFeeling());
+                        if(position != -1) {
+                            spinner1.setSelection(position);
+                        }
+                    }, 500);
+
+                }
+
+                // 두 번째 감정 스피너 설정
+                if (diaryData.getMidFeeling() != null) {
+                    fetchMidFeelings(diaryData.getBigFeeling());
+                    spinner2.postDelayed(() -> {
+                        //Toast.makeText(DiaryActivity.this, "hello", Toast.LENGTH_SHORT).show();
+                        int position = adapter2.getPosition(diaryData.getMidFeeling());
+                        if (position != -1) {
+                            spinner2.setSelection(position);
+                        }
+                    }, 1000);
+                }
+
+                // 세 번째 감정 스피너 설정
+                if (diaryData.getSmallFeeling() != null) {
+                    fetchSmallFeelings(diaryData.getMidFeeling());
+                    spinner3.postDelayed(() -> {
+                        int position = adapter3.getPosition(diaryData.getSmallFeeling());
+                        if (position != -1) {
+                            spinner3.setSelection(position);
+                        }
+                    }, 1500);
+                }
+            }
+        }
 
 
     }
