@@ -31,8 +31,14 @@ public class MypageActivity extends AppCompatActivity {
     private String nickname;
     private TextView userIdTextView;
     private TextView nicknameTextView;
+
+    //회원탈퇴 버튼
     private Button delIdButton;
 
+    //로그아웃 버튼
+    private Button logoutButton;
+
+    //회원탈퇴 함수
     private void delId(String id) {
         apiServiceInterface.deleteRequest(id).enqueue(new Callback<Void>() {
             @Override
@@ -90,15 +96,25 @@ public class MypageActivity extends AppCompatActivity {
         userIdTextView.setText(userId);
 
         delIdButton = findViewById(R.id.deleteId);
+        logoutButton = findViewById(R.id.logout);
 
         nicknameTextView = findViewById(R.id.nickname);
         nicknameTextView.setText(nickname);
 
+        //회원탈퇴 버튼 누르면 delId 함수 호출
         delIdButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 delId(userId);
             }
+        });
+
+        //로그아웃 버튼 누르면 SharedPreferencesManager 에서 정보들 삭제
+        logoutButton.setOnClickListener(v -> {
+            SharedPreferencesManager.Logout(MypageActivity.this);
+            Intent intent = new Intent(MypageActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 }

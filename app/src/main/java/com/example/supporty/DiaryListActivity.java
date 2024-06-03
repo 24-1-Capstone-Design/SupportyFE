@@ -277,7 +277,6 @@ public class DiaryListActivity extends AppCompatActivity {
                 builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // 아니오 버튼을 클릭하면 대화 상자를 닫습니다.
                         dialog.dismiss();
                     }
                 });

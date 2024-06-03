@@ -13,5 +13,9 @@ public class SignupData { //회원가입시 서버에 보낼 데이터
         this.id = id;
         this.passwd = passwd;
     }
+
+    public String getId() { return id; }
+
+    public String getPasswd() { return id; }
 }
 

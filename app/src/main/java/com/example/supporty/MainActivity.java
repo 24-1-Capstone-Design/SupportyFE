@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                         String joinDate = user.getJoinDate();
                         SharedPreferencesManager.saveUserInfo(MainActivity.this, userId, nickname, joinDate);
 
+                        SharedPreferencesManager.saveLoginInfo(MainActivity.this, userId, data.getPasswd());
                     }
                     else {
                         Log.d("Login", "응답 본문이 없음");
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     if (statusCode == 200) {
                         // 상태 코드가 200인 경우(성공한 경우)
                         Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(MainActivity.this, MypageActivity.class);
+                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                         startActivity(intent);
                     } else {
                         Log.d("Login", "상태 코드: " + response.code());
@@ -117,5 +118,14 @@ public class MainActivity extends AppCompatActivity {
                 login(new SignupData(id, passwd));
             }
         });
+
+        // 자동 로그인 처리 부분
+        if(SharedPreferencesManager.isLoggedIn(this)) {
+            String savedUserId = SharedPreferencesManager.getUserId(this);
+            String savedPasswd = SharedPreferencesManager.getPasswd(this);
+            if (savedUserId != null && !savedUserId.isEmpty()) {
+                login(new SignupData(savedUserId, savedPasswd));
+            }
+        }
     }
 }

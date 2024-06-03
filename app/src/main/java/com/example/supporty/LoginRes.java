@@ -30,6 +30,7 @@ class User { // db로부터 받은 User 테이블 속성들
     @SerializedName("id")
     private String id;
 
+
     @SerializedName("nickname")
     private String nickname;
 
