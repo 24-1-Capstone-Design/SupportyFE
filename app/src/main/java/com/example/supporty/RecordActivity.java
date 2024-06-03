@@ -11,13 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.supporty.goal.*;
+import com.example.supporty.treatment.Treatment;
+import com.example.supporty.treatment.TreatmentActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Calendar;
 
 public class RecordActivity extends AppCompatActivity {
 
-    private Button goDiary, goGoal, goDrug;
+    private Button goDiary, goGoal, goTreatment;
     private CalendarView calendarView;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class RecordActivity extends AppCompatActivity {
 
         goDiary = findViewById(R.id.goDiary);
         goGoal = findViewById(R.id.goGoal);
-        goDrug = findViewById(R.id.goDrug);
+        goTreatment = findViewById(R.id.goTreatment);
 
         goDiary.setOnClickListener(v -> {
             Intent intent = new Intent(RecordActivity.this, DiaryActivity.class);
@@ -37,6 +39,11 @@ public class RecordActivity extends AppCompatActivity {
             Intent intent = new Intent(RecordActivity.this, GoalActivity.class);
             startActivity(intent);
         });
+        goTreatment.setOnClickListener(v -> {
+            Intent intent = new Intent(RecordActivity.this, TreatmentActivity.class);
+            startActivity(intent);
+        });
+
 
         //캘린더 뷰
         calendarView = findViewById(R.id.calendarView);

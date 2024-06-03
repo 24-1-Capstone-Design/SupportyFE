@@ -11,6 +11,12 @@ public class Utils {
         return randomGoalId;
     }
 
+    public static int generateRandomVisitId() {
+        Random random = new Random();
+        int randomVisitId = random.nextInt(10000000);
+        return randomVisitId;
+    }
+
     public static Date generateCurrentDate() {
         Date currentDate = new Date();
         return currentDate;

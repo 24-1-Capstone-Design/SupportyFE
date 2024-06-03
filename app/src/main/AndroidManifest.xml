@@ -13,26 +13,26 @@
         android:theme="@style/Theme.Supporty"
         android:usesCleartextTraffic ="true"
         tools:targetApi="31">
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".SignupActivity"
             android:exported="true">
-
         </activity>
+
         <activity android:name=".HomeActivity"
             android:exported="true">
-
         </activity>
+
         <activity android:name=".MypageActivity"
             android:exported="true">
-
         </activity>
 
         <activity
@@ -40,14 +40,16 @@
             android:exported="true">
         </activity>
 
-
         <activity android:name=".RecordActivity"
             android:exported="true">
-
         </activity>
+
         <activity android:name=".DiaryActivity"
             android:exported="true">
+        </activity>
 
+        <activity android:name=".treatment.TreatmentActivity"
+            android:exported="true">
         </activity>
         <activity android:name=".DiaryListActivity"
             android:exported="true">
