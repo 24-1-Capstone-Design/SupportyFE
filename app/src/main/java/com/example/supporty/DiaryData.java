@@ -2,12 +2,13 @@ package com.example.supporty;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class DiaryData {
+public class DiaryData implements Serializable {
     @SerializedName("id")
     private String id;
     @SerializedName("diary_date")
@@ -29,6 +30,8 @@ public class DiaryData {
         this.midFeeling = midFeeling;
         this.smallFeeling= smallFeeling;
     }
+
+    public String getId() { return id; }
 
     public String getDiaryContent() {
         return diaryContent;
