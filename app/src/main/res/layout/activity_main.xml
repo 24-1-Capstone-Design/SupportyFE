@@ -84,11 +84,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="493dp"
         android:textColor="@color/black"
         android:backgroundTint="@color/white"
-        android:text="로그인 확인"
+        android:text="로그인"
         tools:ignore="MissingConstraints" />
 
 
@@ -106,19 +106,6 @@
         android:layout_marginTop="500dp"
         tools:ignore="MissingConstraints" />
 
-
-    <CheckBox
-        android:id="@+id/autoLoginCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="자동 로그인"
-        android:textSize="18sp"
-        android:checked="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="230dp"
-        android:layout_marginTop="490dp"
-        tools:ignore="MissingConstraints"/>
 
 
 
