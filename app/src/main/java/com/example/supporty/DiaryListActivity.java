@@ -30,138 +30,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 
 
-//커스텀 어댑터(일기 상세정보 표시)
-//class DiaryListAdapter extends BaseAdapter {
-//
-//    private Context context;
-//    private List<DiaryData> diaryList;
-//    private LayoutInflater inflater;
-//
-//    private ApiService apiServiceInterface;
-//    private Retrofit retrofit = RetrofitClient.getClient();
-//
-//
-//
-//    public DiaryListAdapter(Context context, ArrayList<DiaryData> diaryList) {
-//        this.context = context;
-//        this.diaryList = diaryList;
-//        this.inflater = LayoutInflater.from(context);
-//    }
-//
-//    @Override
-//    public int getCount() {
-//        return diaryList.size();
-//    }
-//
-//    @Override
-//    public Object getItem(int position) {
-//        return diaryList.get(position);
-//    }
-//
-//    @Override
-//    public long getItemId(int position) {
-//        return position;
-//    }
-//
-//    // 일기 삭제 로직
-//    private void deleteDiary(DiaryData diary) {
-//        // 일기를 삭제하는 API 호출 등의 로직을 여기에 추가합니다.
-//        // 삭제가 성공하면 리스트에서 해당 일기를 제거하고 어댑터에 변경 사항을 알려줍니다.
-//        apiServiceInterface.deleteDiary(diary.getId(), diary.getDiaryDate()).enqueue(new Callback<Void>() {
-//            @Override
-//            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-//                if (response.isSuccessful() && response.code() == 200) {
-//                    // 서버에서 성공적으로 응답을 받으면 해당 일기를 리스트에서 제거합니다.
-//                    diaryList.remove(diary);
-//                    adapter.notifyDataSetChanged();
-//                    Toast.makeText(context, "일기가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(context, "일기 삭제 실패", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-//                Toast.makeText(context, "서버 통신 실패", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-//
-//    //상세 정보 보이기 위한 함수
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        ViewHolder holder;
-//        if (convertView == null) {
-//            convertView = inflater.inflate(R.layout.list_item_diary, parent, false);
-//            holder = new ViewHolder();
-//            holder.textTitle = convertView.findViewById(R.id.textTitle);
-//            holder.layoutDetails = convertView.findViewById(R.id.layoutDetails);
-//            holder.textContent = convertView.findViewById(R.id.textContent);
-//            holder.textFeelings = convertView.findViewById(R.id.textFeelings);
-//            holder.diaryEditBtn = convertView.findViewById(R.id.diaryEditBtn);
-//            holder.diaryDelBtn = convertView.findViewById(R.id.diaryDelBtn);
-//            convertView.setTag(holder);
-//        } else {
-//            holder = (ViewHolder) convertView.getTag();
-//        }
-//
-//        DiaryData diary = diaryList.get(position);
-//        holder.textTitle.setText(diary.getDiaryDate() + "의 일기");
-//        holder.textContent.setText(diary.getDiaryContent());
-//        holder.textFeelings.setText("감정: " + diary.getBigFeeling() + " / " + diary.getMidFeeling() + " / " + diary.getSmallFeeling());
-//
-//        //일기 목록 아이템 선택시 상세정보 보이게/안보이게
-//        convertView.setOnClickListener(v -> {
-//            if (holder.layoutDetails.getVisibility() == View.VISIBLE) {
-//                holder.layoutDetails.setVisibility(View.GONE);
-//            } else {
-//                holder.layoutDetails.setVisibility(View.VISIBLE);
-//            }
-//        });
-//
-//        //수정 버튼 클릭시의 이벤트
-//        holder.diaryEditBtn.setOnClickListener(v -> {
-//            //DiaryActivity 에 넘어가게 만듦(정보도 넘겨줌)
-//            Intent intent = new Intent(context, DiaryActivity.class);
-//            intent.putExtra("diaryData", diary);
-//            context.startActivity(intent);
-//        });
-//
-//        // 삭제 버튼 클릭 시의 이벤트
-//        holder.diaryDelBtn.setOnClickListener(v -> {
-//            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//            builder.setMessage("정말로 삭제하시겠습니까?");
-//            builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    // 확인 버튼을 클릭하면 삭제 로직을 수행합니다.
-//                    deleteDiary(diary);
-//                }
-//            });
-//            builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    // 아니오 버튼을 클릭하면 대화 상자를 닫습니다.
-//                    dialog.dismiss();
-//                }
-//            });
-//            AlertDialog alertDialog = builder.create();
-//            alertDialog.show();
-//        });
-//
-//
-//        return convertView;
-//    }
-//
-//    private static class ViewHolder {
-//        TextView textTitle;
-//        LinearLayout layoutDetails;
-//        TextView textContent;
-//        TextView textFeelings;
-//        Button diaryEditBtn;
-//        Button diaryDelBtn;
-//    }
-//}
 public class DiaryListActivity extends AppCompatActivity {
 
     private ListView listView;
@@ -207,7 +75,7 @@ public class DiaryListActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                     if (response.isSuccessful() && response.code() == 200) {
-                        // 서버에서 성공적으로 응답을 받으면 해당 일기를 리스트에서 제거합니다.
+                        //  해당 일기를 리스트에서 제거
                         diaryList.remove(diary);
                         adapter.notifyDataSetChanged();
                         Toast.makeText(context, "일기가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
@@ -267,19 +135,11 @@ public class DiaryListActivity extends AppCompatActivity {
             holder.diaryDelBtn.setOnClickListener(v -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("이 일기를 지우면 다시 이 날짜의 일을 기록할 수 없습니다.\n 그래도 삭제하시겠습니까?");
-                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // 예 버튼을 누르면 일기 삭제 함수 호출
-                        deleteDiary(diary);
-                    }
+                builder.setPositiveButton("예", (dialog, which) -> {
+                    // 예 버튼을 누르면 일기 삭제 함수 호출
+                    deleteDiary(diary);
                 });
-                builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                builder.setNegativeButton("아니오", (dialog, which) -> dialog.dismiss());
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
             });
@@ -315,7 +175,7 @@ public class DiaryListActivity extends AppCompatActivity {
         });
 
         listView = findViewById(R.id.post_list);
-        diaryList = new ArrayList<DiaryData>();
+        diaryList = new ArrayList<>();
 
         adapter = new DiaryListAdapter(this, diaryList);
         listView.setAdapter(adapter);

@@ -91,12 +91,9 @@ public class SignupActivity extends AppCompatActivity {
         retrofit = RetrofitClient.getClient();
         apiServiceInterface = retrofit.create(ApiService.class);
 
-        checkIdDupl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String id = signupId.getText().toString();
-                checkId(id);
-            }
+        checkIdDupl.setOnClickListener(v -> {
+            String id = signupId.getText().toString();
+            checkId(id);
         });
 
         completeSignup.setOnClickListener(v -> {
@@ -119,8 +116,6 @@ public class SignupActivity extends AppCompatActivity {
             } else {
                 startSignup(new SignupData(id, passwd));
                 finish();
-//              Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
-//              startActivity(intent);
             }
 
         });
